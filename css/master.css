@@ -1,38 +1,59 @@
 body {
   background-color: #eee;
   text-align: center;
+  display: flex;
 }
 
-square {
-  position: absolute;
-  width: 25%;
-  height: 25%;
-  background-color: #f0d9b5;
-  border: 2px solid #b58863;
+body>* {
+  margin: 10px;
 }
 
 .board {
-  border: 2px solid #b58863;
-  margin: 10px;
+  background-color: #f0d9b5;
+  border: 1px solid #b58863;
   position: relative;
   width: 500px;
   height: 500px;
 }
 
-.choice {
-  position:relative;
-  width:100px;
-  height:50px;
+.stack {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #b58863;
+  background-color: #f0d9b5;
+  border-radius: 10%;
+}
+/*
+  ************* SQUARES
+ */
+square {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  border: 1px solid #b58863;
 }
 
+square.drop-hover:empty {
+  background-color: lightgray;
+}
+/*
+  ************* PAWNS
+ */
 pawn {
-  margin: 2%;
+  /*margin: 2%;*/
+  box-shadow: 2px 2px 4px #888;
   position: absolute;
   border-radius: 50%;
+  border-color: transparent;
   bottom: 0;
   left: 0;
-  width: 96%;
-  height:96%;
+  width: 120px;
+  height:120px;
+}
+
+pawn.ui-draggable-dragging {
+  box-shadow: 3px 3px 6px #888;
 }
 
 .white {

@@ -9,7 +9,13 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- JQuery-UI -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+
     <link rel="stylesheet" href="/css/master.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,7 +23,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body class="container-fluid">
     <div class="board">
       <square style="left:0%; bottom:75%"></square>
       <square style="left:25%; bottom:75%"></square>
@@ -25,21 +31,46 @@
       <square style="left:75%; bottom:75%"></square>
       <square style="left:0%; bottom:50%"></square>
       <square style="left:25%; bottom:50%"></square>
-      <square style="left:50%; bottom:50%"><pawn class="white" draggable="true"></pawn></square>
+      <square style="left:50%; bottom:50%"></square>
       <square style="left:75%; bottom:50%"></square>
       <square style="left:0%; bottom:25%"></square>
       <square style="left:25%; bottom:25%"></square>
       <square style="left:50%; bottom:25%"></square>
       <square style="left:75%; bottom:25%"></square>
-      <square style="left:0%; bottom:0%"><pawn class="black" draggable="true"></pawn></square>
+      <square style="left:0%; bottom:0%"></square>
       <square style="left:25%; bottom:0%"></square>
       <square style="left:50%; bottom:0%"></square>
       <square style="left:75%; bottom:0%"></square>
+    </div>
+
+    <div class="stack">
+      <pawn class="black" style="bottom:2%;left:2%;"></pawn>
+      <pawn class="black" style="bottom:4%;left:4%;"></pawn>
+      <pawn class="black" style="bottom:6%;left:6%;"></pawn>
+      <pawn class="black" style="bottom:8%;left:8%;"></pawn>
+      <pawn class="black" style="bottom:10%;left:10%;"></pawn>
+      <pawn class="black" style="bottom:12%;left:12%;"></pawn>
+      <pawn class="black" style="bottom:14%;left:14%;"></pawn>
+      <pawn class="black" style="bottom:16%;left:16%;"></pawn>
+    </div>
+    <div class="stack">
+      <pawn class="white" style="bottom:2%;left:2%;"></pawn>
+      <pawn class="white" style="bottom:4%;left:4%;"></pawn>
+      <pawn class="white" style="bottom:6%;left:6%;"></pawn>
+      <pawn class="white" style="bottom:8%;left:8%;"></pawn>
+      <pawn class="white" style="bottom:10%;left:10%;"></pawn>
+      <pawn class="white" style="bottom:12%;left:12%;"></pawn>
+      <pawn class="white" style="bottom:14%;left:14%;"></pawn>
+      <pawn class="white" style="bottom:16%;left:16%;"></pawn>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- JQuery-ui for drag and drop -->
+    <script src="js/jquery-ui.min.js"></script>
+
+    <script src="js/master.js"></script>
   </body>
 </html>
