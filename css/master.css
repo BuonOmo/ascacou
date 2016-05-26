@@ -39,7 +39,7 @@ square {
 }
 
 square.drop-hover:empty {
-  background-color: lightgray;
+  background-color: #e5be80;
 }
 /*
   ************* PAWNS
@@ -57,7 +57,7 @@ pawn {
 }
 
 pawn.ui-draggable-dragging {
-  box-shadow: 3px 3px 6px #888;
+  box-shadow: 5px 5px 10px #888;
 }
 
 .white {
