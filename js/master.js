@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Create a board by filling it with squares.
+ * @param  DOM      board  the element on the dom to fill
+ * @param  number   size   number of squares per line
+ */
 function createBoard (board,size) {
   // Width and height have 124 times the number of square px, plus 2 for each border
   $('.board').css('width',size*124+2+'px');
@@ -12,6 +17,13 @@ function createBoard (board,size) {
     }
   }
 };
+
+/**
+ * Fill a stack with pawns.
+ * @param   DOM     board   the element on the dom to fill
+ * @param   string  color   the color can have two values, 'black' or 'white'
+ * @param   number  number  number of pawns on the stack
+ */
 function fillStack (stack,color,number) {
   for (var i = 0; i < number; i++) {
     var percent = i+2;
@@ -39,7 +51,6 @@ $('square').droppable({
 });
 
 function handlerDrop (event, ui) {
-  // ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
   if (!$(this).is(':parent')) {
     ui.draggable.draggable( 'option', 'revert', false );
     ui.draggable.css('bottom','0');
