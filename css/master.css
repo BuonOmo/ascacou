@@ -17,24 +17,24 @@ body {
 
 #stackContainer {
   display:flex;
+  border: 2px solid #b58863;
+  background-color: #f0d9b5;
+  border-radius: 20px;
+  margin: 10px;
 }
 
 .stack {
-  margin: 10px;
-  position: relative;
   width: 150px;
   height: 150px;
-  border: 2px solid #b58863;
-  background-color: #f0d9b5;
-  border-radius: 10%;
+  position: relative;
 }
 /*
   ************* SQUARES
  */
 square {
   position: absolute;
-  width: 25%;
-  height: 25%;
+  width: 124px;
+  height: 124px;
   border: 1px solid #b58863;
 }
 
