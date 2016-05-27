@@ -37,9 +37,10 @@ createBoard($('.board:first'),5);
 
 $('pawn').draggable({
   containment: '.board .stack',
+  stack: 'pawn',
   cursor: 'move',
   revert: true,
-  revertDuration: 70,
+  revertDuration: 150,
   snap: 'square',
   snapTolerance: 10
 });
@@ -58,7 +59,7 @@ function handlerDrop (event, ui) {
     ui.draggable.css('top','0');
     ui.draggable.css('right','0');
     ui.draggable.css('position','absolute');
-    ui.draggable.draggable( 'disable' );
+    ui.draggable.draggable('disable');
     $(this).append(ui.draggable);
   }
 }
