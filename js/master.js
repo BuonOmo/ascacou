@@ -1,8 +1,6 @@
 'use strict';
 
 var boardSize    = 5;
-var canvasHeight = 900;
-var canvasWidth  = 1300;
 
 /**
  * All possible cards played on the boad, encoded on 8 bit this way :
@@ -102,13 +100,22 @@ function shuffleCards () {
     for (var j = 1; j < 16; j*=2) {
       color[c++] = (i & j) ? 'black' : 'white';
     }
-    $('<div class="card"></div>')
+    $('<div></div>')
       .attr('value',i)
-      .append('<div class="'+color[0]+' small-pawn" style="bottom:50%;left:0%"></div>')
-      .append('<div class="'+color[1]+' small-pawn" style="bottom:50%;left:50%"></div>')
-      .append('<div class="'+color[2]+' small-pawn" style="bottom:0%;left:0%"></div>')
-      .append('<div class="'+color[3]+' small-pawn" style="bottom:0%;left:50%"></div>')
-      .appendTo('#player'+player);
+      .addClass('card')
+      .append('<div class="front"></div>')
+      .append('<div class="back"></div>')
+      .appendTo('#player'+player)
+      .find('.front')
+        .append('<div class="'+color[0]+' small-pawn" style="bottom:50%;left:0%"></div>')
+        .append('<div class="'+color[1]+' small-pawn" style="bottom:50%;left:50%"></div>')
+        .append('<div class="'+color[2]+' small-pawn" style="bottom:0%;left:0%"></div>')
+        .append('<div class="'+color[3]+' small-pawn" style="bottom:0%;left:50%"></div>')
+      .parent().find('.back')
+        .append('<div class="'+color[0]+' small-pawn" style="bottom:75%;left:50%"></div>')
+        .append('<div class="'+color[1]+' small-pawn" style="bottom:75%;left:75%"></div>')
+        .append('<div class="'+color[2]+' small-pawn" style="bottom:50%;left:50%"></div>')
+        .append('<div class="'+color[3]+' small-pawn" style="bottom:50%;left:75%"></div>')
   }
   while ($('#player1 .card').length > 8) {
     $($('#player1 .card')[Math.round(Math.random()*$('#player1 .card').length)]).appendTo('#player2');
@@ -161,23 +168,9 @@ $('.card').hover(
   }
 );
 
-$('.card').on('animationstart', function (event) {
-  var elmt = this;
-  setTimeout(function () {
-    var left, bottom;
-    for (var i = 0; i < 4; i++) {
-      bottom = (i > 1) ? '50%' : '75%';
-      left   = !(i % 2) ? '50%' : '75%';
-      $($(elmt).children()[i])
-        .css('bottom',bottom)
-        .css('left',left)
-        .css('margin','2%')
-        .css('width','21%')
-        .css('height','21%');
-    }
-  },1000);
-})
-
+$('.card').click(function () {
+  $(this).toggleClass('flip');
+});
 $('pawn').draggable({
   containment: '.board .stack',
   stack: 'pawn',
@@ -235,7 +228,7 @@ function updateState () {
     }
 
     if (isFull(i)) {
-      $('.card[value='+getCard(i)+']').addClass('done');
+      $('.card[value='+getCard(i)+']').addClass('done flip');
     }
   }
 }

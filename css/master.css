@@ -1,5 +1,4 @@
 .canvas, .canvas * {
-  --full-width: calc(var(--pawn-size) * 10 + 60px);
   --pawn-size:  120px;
   --main-border-color: #b58863;
   --main-case-color: #f0d9b5;
@@ -14,8 +13,8 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: calc(var(--pawn-size) * 10 + 60px);
-  height: calc(var(--pawn-size)*7.2 + 4*5px + 2px + 40px);
+  width: calc(var(--pawn-size) * 10.6);
+  height: calc(var(--pawn-size)*7.7 + 4*5px + 1px);
 }
 
 
@@ -27,7 +26,7 @@ body {
 \*—————————————————————————————————————————————*/
 .card-stack {
   width: calc(var(--pawn-size)*1.25*2 + 4px);
-  height: calc(var(--pawn-size)*5 + 4*5px + 2px);
+  height: calc(var(--pawn-size)*5 + 4*5px + 1.5px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -36,43 +35,40 @@ body {
 
 .card {
   position: relative;
+  transition: 0.6s;
+  transform-style: preserve-3d;
   width:  calc(var(--pawn-size)*1.25);
   height: calc(var(--pawn-size)*1.25);
-  border: 2px solid var(--main-border-color);
-  border-radius: 10%;
-  background-color: var(--main-case-color);
-
 }
 
-.card.done {
-  animation : turn 2s normal;
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.back {
+  width:  calc(var(--pawn-size)*1.25);
+  height: calc(var(--pawn-size)*1.25);
   background-color: var(--main-border-color);
+  transform: rotateY(180deg);
 }
 
-@keyframes turn {
-  0% {
-    width: calc(var(--pawn-size)*1.25);
-    background-color: var(--main-case-color);
-    padding-left: 0px;
-    /*padding-right: 0px;*/
-  }
-  49% {
-  }
-  50% {
-    background-color: var(--main-case-color);
-    padding-left: 75px;
-    /*padding-right: 75px;*/
-  }
-  51% {
-    background-color: var(--main-border-color);
-  }
-  100% {
-    padding-left: 0px;
-    /*padding-right: 0px;*/
-    width: calc(var(--pawn-size)*1.25);
-  }
+.front {
+  width:  calc(var(--pawn-size)*1.25);
+  height: calc(var(--pawn-size)*1.25);
+  background-color: var(--main-case-color);
+  transform: rotateY(0deg);
+  z-index: 2;
 }
 
+
+.back, .front {
+  box-shadow: 0 0 0 1px var(--main-border-color) inset,
+              2px 2px 4px #666 ;
+  backface-visibility: hidden;
+  position: absolute;
+  top:  0;
+  left: 0;
+}
 
 
 
@@ -82,19 +78,21 @@ body {
 \*—————————————————————————————————————————————*/
 .board {
   background-color: var(--main-case-color);
-  border: 1px solid var(--main-border-color);
+  border: .5px solid var(--main-border-color);
+  box-shadow: 2px 2px 4px #666 ;
   position: relative;
-  width: calc(var(--pawn-size)*5 + 4*5px + 2px);
-  height: calc(var(--pawn-size)*5 + 4*5px + 2px);
+  width: calc(var(--pawn-size)*5 + 4*5px + 1.5px);
+  height: calc(var(--pawn-size)*5 + 4*5px + 1.5px);
 }
 
 #stackContainer {
   display:inline;
   width:100%;
-  border: 2px solid var(--main-border-color);
   background-color: var(--main-case-color);
   border-radius: calc(var(--pawn-size) / 5);
   padding-bottom: 1%;
+  box-shadow: 0 0 0 2px var(--main-border-color) inset,
+              2px 2px 4px #666 ;
 }
 
 .stack {
@@ -113,20 +111,19 @@ square {
   position: absolute;
   width: calc(var(--pawn-size) + 4px);
   height: calc(var(--pawn-size) + 4px);
-  border: 1px solid var(--main-border-color);
+  border: .5px solid var(--main-border-color);
 }
 
 square.drop-hover:empty {
   background-color: #e5be80;
 }
 
-square.card-selected {
-  border-color: pink;
-  background-color: pink;
-  /*
-  box-shadow: 10px 10px 15px #666;
-  bottom: 10px;
-  left: -10px;*/
+square.card-selected>pawn {
+  bottom: 2px;
+  left: -2px;
+  box-shadow: 15px 15px 10px -10px rgba(0, 0, 0, 0.5),
+              0 1px 4px rgba(0, 0, 0, 0.3),
+              1px 1px 1px #888 inset;
 }
 
 
@@ -135,7 +132,8 @@ square.card-selected {
 \*—————————————————————————————————————————————*/
 pawn {
   margin: 1%;
-  box-shadow: 2px 2px 4px #666;
+  box-shadow: 1px 1px 1px #888 inset,
+              2px 2px 4px #666;
   position: absolute;
   border-radius: 50%;
   width: var(--pawn-size);
@@ -144,10 +142,20 @@ pawn {
 
 .small-pawn {
   position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #888 inset;
+}
+
+.front>.small-pawn {
   margin: 5%;
   width: 40%;
   height: 40%;
-  border-radius: 50%;
+}
+
+.back>.small-pawn {
+  margin: 2%;
+  width: 21%;
+  height: 21%;
 }
 
 pawn.ui-draggable-dragging {
