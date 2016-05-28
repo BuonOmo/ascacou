@@ -31,6 +31,16 @@ function fillStack (stack,color,number) {
   }
 };
 
+function shuffleCards () {
+  for (var i = 0; i < 16; i++) {
+    var player = Math.round(Math.random())+1;
+    console.log(player);
+    $('<div class="card"></div>').attr('value',i).appendTo('#player'+player);
+  }
+}
+
+shuffleCards();
+
 fillStack($('.stack:first'),'black',13);
 fillStack($('.stack:last'),'white',13);
 createBoard($('.board:first'),5);
