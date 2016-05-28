@@ -1,5 +1,6 @@
 body {
   display: flex;
+  justify-content: center;
   background-color: #eee;
 }
 
@@ -7,18 +8,16 @@ body {
 
 
 
-/*—————————————————————————————————————————————*
+/*—————————————————————————————————————————————*\
               $Bootstrap overwrite
 \*—————————————————————————————————————————————*/
-.container-fluid {
-  padding-right: 0px;
-  padding-left: 0px;
-}
 
 #player1, #player2 {
   margin-top: 10px;
-  width: 150px;
-  height: 320px;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: 317px;
+  height: 640px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -28,36 +27,45 @@ body {
 
 
 
-/*—————————————————————————————————————————————*
-              $Player's cards
+/*—————————————————————————————————————————————*\
+              $Cards
 \*—————————————————————————————————————————————*/
 .card {
   position: relative;
-  margin-left: 2px;
+  margin-left: 7px;
   margin-bottom: 10px;
-  width:  70px;
-  height: 70px;
+  width:  148px;
+  height: 148px;
   border: 2px solid #b58863;
+  border-radius: 10%;
   background-color: #f0d9b5;
 
 }
 
 .card.done {
   animation : turn 2s normal;
+  background-color: #b58863;
 }
 
 @keyframes turn {
   0% {
-    margin-left: 2px;
-    width: 70px;
+    margin-left: 7px;
+    width: 148px;
+    background-color: #f0d9b5;
+  }
+  49% {
   }
   50% {
-    margin-left: 37px;
+    background-color: #f0d9b5;
+    margin-left: 81px;
     width: 0px;
   }
+  51% {
+    background-color: #b58863;
+  }
   100% {
-    margin-left: 2px;
-    width: 70px;
+    margin-left: 7px;
+    width: 148px;
   }
 }
 
@@ -65,8 +73,8 @@ body {
 
 
 
-/*—————————————————————————————————————————————*
-              $Game board
+/*—————————————————————————————————————————————*\
+              $Board
 \*—————————————————————————————————————————————*/
 .board-container {
   margin-left: 10px;
@@ -103,7 +111,7 @@ body {
 
 
 
-/*—————————————————————————————————————————————*
+/*—————————————————————————————————————————————*\
               $Squares
 \*—————————————————————————————————————————————*/
 square {
@@ -117,11 +125,18 @@ square.drop-hover:empty {
   background-color: #e5be80;
 }
 
+square.card-selected {
+  border-color: pink;
+  background-color: pink;
+  /*
+  box-shadow: 10px 10px 15px #888;
+  bottom: 10px;
+  left: -10px;*/
+}
 
 
-
-/*—————————————————————————————————————————————*
-              $Pawns and small-pawns
+/*—————————————————————————————————————————————*\
+              $Pawns and $small-pawns
 \*—————————————————————————————————————————————*/
 pawn {
   margin: 1%;

@@ -1,6 +1,7 @@
 'use strict';
 
 var boardSize = 5;
+
 /**
  * All possible cards played on the boad, encoded on 8 bit this way :
  *
@@ -38,25 +39,21 @@ const B_FULL = 0b00100000;
 const C_FULL = 0b01000000;
 const D_FULL = 0b10000000;
 
-const A_BLACK = 0b00000001;
-const B_BLACK = 0b00000010;
-const C_BLACK = 0b00000100;
-const D_BLACK = 0b00001000;
+const A_BLACK = 0b0001;
+const B_BLACK = 0b0010;
+const C_BLACK = 0b0100;
+const D_BLACK = 0b1000;
 
 /**
- * @return boolean state of card at index <index> on the board.
+ * @return boolean state of card at index <index> on the board
  */
 function isFull(index) {
   return (cards[index] & STACK_ENCODE) == STACK_ENCODE;
 };
 
 /**
- * @return boolean state of card at index <index> on the board.
+ * @return number  value of the encoded card
  */
-function isEmpty(index) {
-  return (cards[index] & STACK_ENCODE) == 0;
-};
-
 function getCard(index) {
   return (cards[index] & CARD_ENCODE);
 }
@@ -128,26 +125,50 @@ fillStack($('.stack:last'),'white',13);
 createBoard($('.board:first'),boardSize);
 
 /**
- * updateCards update all the "cards" vector around the modified index
- * @param  number index   square that has been modified
- * @param  number value   1 for black, 0 for white
- * @return {[type]}       [description]
+ * toggle the class selected card on board elements.
  */
-function updateCards (index,value) {
-
-}
-
-$('.card').click(function () {
-    $(this).addClass('done');
-});
+$('.card').hover(
+  function () {
+    if ($(this).is('.done')) {
+      for (var i = 0; i < cards.length; i++) {
+        if (isFull(i) && (getCard(i) == parseInt($(this).attr('value')))) {
+          var index = cardsToBoardIndex(i);
+          $('square[index = '+index+']').addClass('card-selected');
+          index++;
+          $('square[index = '+index+']').addClass('card-selected');
+          index = cardsToBoardIndex(i)+boardSize;
+          $('square[index = '+index+']').addClass('card-selected');
+          index++;
+          $('square[index = '+index+']').addClass('card-selected');
+        }
+      }
+    }
+  },
+  function () {
+    if ($(this).is('.done')) {
+      for (var i = 0; i < cards.length; i++) {
+        if (isFull(i) && (getCard(i) == parseInt($(this).attr('value')))) {
+          var index = cardsToBoardIndex(i);
+          $('square[index = '+index+']').removeClass('card-selected');
+          index++;
+          $('square[index = '+index+']').removeClass('card-selected');
+          index = cardsToBoardIndex(i)+boardSize;
+          $('square[index = '+index+']').removeClass('card-selected');
+          index++;
+          $('square[index = '+index+']').removeClass('card-selected');
+        }
+      }
+    }
+  }
+);
 
 $('.card').on('animationstart', function (event) {
   var elmt = this;
   setTimeout(function () {
     var left, bottom;
     for (var i = 0; i < 4; i++) {
-      bottom = !(i % 2) ? '50%' : '75%';
-      left   =  (i > 1) ? '50%' : '75%';
+      bottom = (i > 1) ? '50%' : '75%';
+      left   = !(i % 2) ? '50%' : '75%';
       $($(elmt).children()[i])
         .css('bottom',bottom)
         .css('left',left)
@@ -176,15 +197,14 @@ $('square').droppable({
 
 function handlerDrop (event, ui) {
   if (!$(this).is(':parent')) {
-    ui.draggable.draggable( 'option', 'revert', false );
-    ui.draggable.css('bottom','0');
-    ui.draggable.css('left','0');
-    ui.draggable.css('top','0');
-    ui.draggable.css('right','0');
-    ui.draggable.css('position','absolute');
-    ui.draggable.draggable('disable');
+    ui.draggable.draggable( 'option', 'revert', false )
+      .css('bottom','')
+      .css('left','')
+      .css('top','')
+      .css('right','')
+      .css('position','absolute')
+      .draggable('disable');
     $(this).append(ui.draggable);
-    // var color = ui.draggable.hasClass('white') ? 0 : 1;
     updateState();
   }
 }
@@ -193,25 +213,25 @@ function updateState () {
   for (var i = 0; i < cards.length; i++) {
     if ($('square[index='+cardsToBoardIndex(i)+']').is(':parent')) {
       cards[i] = cards[i] | A_FULL;
-      if ($('square[index='+(cardsToBoardIndex(i))+']>pawn').hasClass('black'))
+      if ($('square[index='+(cardsToBoardIndex(i))+']>pawn').is('.black'))
 				cards[i] = cards[i] | A_BLACK;
     }
 
     if ($('square[index='+(cardsToBoardIndex(i)+1)+']').is(':parent')) {
       cards[i] = cards[i] | B_FULL;
-      if ($('square[index='+(cardsToBoardIndex(i)+1)+']>pawn').hasClass('black'))
+      if ($('square[index='+(cardsToBoardIndex(i)+1)+']>pawn').is('.black'))
 				cards[i] = cards[i] | B_BLACK;
     }
 
     if ($('square[index='+(cardsToBoardIndex(i)+boardSize)+']').is(':parent')) {
       cards[i] = cards[i] | C_FULL;
-      if ($('square[index='+(cardsToBoardIndex(i)+boardSize)+']>pawn').hasClass('black'))
+      if ($('square[index='+(cardsToBoardIndex(i)+boardSize)+']>pawn').is('.black'))
 				cards[i] = cards[i] | C_BLACK;
     }
 
     if ($('square[index='+(cardsToBoardIndex(i)+boardSize+1)+']').is(':parent')) {
       cards[i] = cards[i] | D_FULL;
-      if ($('square[index='+(cardsToBoardIndex(i)+boardSize+1)+']>pawn').hasClass('black'))
+      if ($('square[index='+(cardsToBoardIndex(i)+boardSize+1)+']>pawn').is('.black'))
         cards[i] = cards[i] | D_BLACK;
     }
 
