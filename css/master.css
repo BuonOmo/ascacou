@@ -1,5 +1,9 @@
 .canvas, .canvas * {
-  --pawn-size:  120px;
+  /**
+   * Minmum 16px.
+   * 120px is nice on a 1920*1080 screen
+   */
+  --pawn-size:  100px;
   --main-border-color: #b58863;
   --main-case-color: #f0d9b5;
 }
@@ -9,12 +13,15 @@ body {
 }
 
 .canvas {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+  align-content: space-between;
   flex-wrap: wrap;
-  width: calc(var(--pawn-size) * 10.6);
-  height: calc(var(--pawn-size)*7.7 + 4*5px + 1px);
+  width: calc(var(--pawn-size) * 10.6 + 20px);
+  height: calc(var(--pawn-size)*7.5 + 4*5px + 1px);
 }
 
 

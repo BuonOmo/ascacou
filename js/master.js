@@ -84,7 +84,7 @@ function createBoard (board,size) {
  */
 function fillStack (stack,color,number) {
   for (var i = 0; i < number; i++) {
-    var percent = i*6.3;
+    var percent = i*7.3;
     $(stack).append('<pawn class="'+color+'" style="left:'+percent+'%;"></pawn>');
   }
 };
