@@ -1,6 +1,8 @@
 'use strict';
 
-var boardSize = 5;
+var boardSize    = 5;
+var canvasHeight = 900;
+var canvasWidth  = 1300;
 
 /**
  * All possible cards played on the boad, encoded on 8 bit this way :
@@ -64,9 +66,6 @@ function getCard(index) {
  * @param  number   size   number of squares per line
  */
 function createBoard (board,size) {
-  // Width and height have 124 times the number of square px, plus 2 for each border
-  $('.board').css('width',size*124+2+'px');
-  $('.board').css('height',size*124+2+'px');
   for (var i = 0; i < size; i++) {
     for (var j = 0; j < size; j++) {
       var left = Math.round(100 * j/size);
@@ -87,8 +86,8 @@ function createBoard (board,size) {
  */
 function fillStack (stack,color,number) {
   for (var i = 0; i < number; i++) {
-    var percent = i+2;
-    $(stack).append('<pawn class="'+color+'" style="bottom:'+percent+'%;left:'+percent+'%;"></pawn>');
+    var percent = i*6.3;
+    $(stack).append('<pawn class="'+color+'" style="left:'+percent+'%;"></pawn>');
   }
 };
 
