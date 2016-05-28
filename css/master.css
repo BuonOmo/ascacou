@@ -1,34 +1,84 @@
 body {
   display: flex;
-  /*align-items: center;*/
   background-color: #eee;
 }
+
+
+
+
+
+/*—————————————————————————————————————————————*
+              $Bootstrap overwrite
+\*—————————————————————————————————————————————*/
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 #player1, #player2 {
+  margin-top: 10px;
   width: 150px;
-  height: 540px;
+  height: 320px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  wrap: flex-wrap;
+  flex-wrap: wrap;
 }
+
+
+
+
+
+/*—————————————————————————————————————————————*
+              $Player's cards
+\*—————————————————————————————————————————————*/
 .card {
-  /*position: relative;*/
-  margin: 2px;
-  width: 60px;
-  height: 60px;
+  position: relative;
+  margin-left: 2px;
+  margin-bottom: 10px;
+  width:  70px;
+  height: 70px;
   border: 2px solid #b58863;
   background-color: #f0d9b5;
 
 }
+
+.card.done {
+  animation : turn 2s normal;
+}
+
+@keyframes turn {
+  0% {
+    margin-left: 2px;
+    width: 70px;
+  }
+  50% {
+    margin-left: 37px;
+    width: 0px;
+  }
+  100% {
+    margin-left: 2px;
+    width: 70px;
+  }
+}
+
+
+
+
+
+/*—————————————————————————————————————————————*
+              $Game board
+\*—————————————————————————————————————————————*/
 .board-container {
+  margin-left: 10px;
+  margin-right: 10px;
   width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
 }
 
 .board {
-  margin-top: 10px;
   background-color: #f0d9b5;
   border: 1px solid #b58863;
   position: relative;
@@ -49,9 +99,13 @@ body {
   height: 150px;
   position: relative;
 }
-/*
-  ************* SQUARES
- */
+
+
+
+
+/*—————————————————————————————————————————————*
+              $Squares
+\*—————————————————————————————————————————————*/
 square {
   position: absolute;
   width: 124px;
@@ -62,30 +116,39 @@ square {
 square.drop-hover:empty {
   background-color: #e5be80;
 }
-/*
-  ************* PAWNS
- */
+
+
+
+
+/*—————————————————————————————————————————————*
+              $Pawns and small-pawns
+\*—————————————————————————————————————————————*/
 pawn {
-  /*margin: 2%;*/
+  margin: 1%;
   box-shadow: 2px 2px 4px #888;
   position: absolute;
   border-radius: 50%;
-  border-color: transparent;
-  bottom: 0;
-  left: 0;
   width: 120px;
   height:120px;
+}
+
+.small-pawn {
+  position: absolute;
+  margin: 5%;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
 }
 
 pawn.ui-draggable-dragging {
   box-shadow: 5px 5px 10px #888;
 }
 
-.white {
+/*pawn*/ .white {
   color: white;
   background-color: white;
 }
-.black {
+/*pawn*/ .black {
   color: black;
   background-color: black;
 }
