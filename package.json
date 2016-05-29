@@ -1,0 +1,28 @@
+{
+  "name": "Ascacou",
+  "version": "0.0.1",
+  "description": "A brain teaser game with Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buonOmo/ascacou.git"
+  },
+  "keywords": [
+    "Ascacou",
+    "game",
+    "board",
+    "reflexion"
+  ],
+  "author": "Ulysse Buonomo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/buonOmo/ascacou/issues"
+  },
+  "homepage": "https://github.com/buonOmo/ascacou#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0"
+  }
+}
