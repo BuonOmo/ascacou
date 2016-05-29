@@ -172,7 +172,7 @@ $('.card').click(function () {
   $(this).toggleClass('flip');
 });
 $('pawn').draggable({
-  containment: '.board .stack',
+  containment: '.canvas',
   stack: 'pawn',
   cursor: 'move',
   revert: true,
