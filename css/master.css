@@ -1,15 +1,22 @@
+/*
+palette used here : http://www.colourlovers.com/palette/49963/let_them_eat_cake
+ */
+
 .canvas, .canvas * {
   /**
    * Minmum 16px.
    * 120px is nice on a 1920*1080 screen
    */
   --pawn-size:  100px;
-  --main-border-color: #b58863;
-  --main-case-color: #f0d9b5;
+  --main-border-color:
+  #F1D4AF;
+  --main-case-color:
+  #ECE5CE;
 }
 
 body {
-  background-color: #eee;
+  background-color:
+  #C5E0DC;
 }
 
 .canvas {
@@ -170,8 +177,8 @@ pawn.ui-draggable-dragging {
 }
 
 /*pawn*/ .white {
-  background-color: white;
+  background-color: #E08E79;
 }
 /*pawn*/ .black {
-  background-color: black;
+  background-color: #774F38;
 }
