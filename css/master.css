@@ -7,7 +7,7 @@ palette used here : http://www.colourlovers.com/palette/49963/let_them_eat_cake
    * Minmum 16px.
    * 120px is nice on a 1920*1080 screen
    */
-  --pawn-size:  100px;
+  --pawn-size: 12vh;
   --main-border-color:
   #F1D4AF;
   --main-case-color:
