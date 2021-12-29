@@ -1,3 +1,5 @@
+:warning: Deprecated in favor of https://github.com/michel3141/ascacou
+
 # ascacou
 
 A nice strategy 1 vs 1 game ( created by Marc Buonomo )
